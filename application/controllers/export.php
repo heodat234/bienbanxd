@@ -65,7 +65,6 @@ class export extends CI_Controller {
         $objPHPExcel->setActiveSheetIndex(0);
 
         $congtrinh = $this->XayTuong_model->get_all();
-        
         $congviec = $this->XayTuong_model->congviec($congtrinh->id);
         // var_dump($congviec);
 
@@ -78,7 +77,12 @@ class export extends CI_Controller {
         $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3,22,$congtrinh->so_banve_thicong);
         $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5,8,$congtrinh->ten_caukien);
         $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0,41,$congtrinh->Ykien);
-        // $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3,22,$congtrinh->so_banve_thicong);
+        if ($congtrinh->Ketluan == 1) {
+           $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0,44,'X');
+        }else{
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0,44,'X');
+        }
+        
 
         $row = 26;
         foreach ($congviec as $viec) {
@@ -91,11 +95,20 @@ class export extends CI_Controller {
             $row++;
         }
 
+        //anh
+        $objDrawing = new PHPExcel_Worksheet_Drawing();
+        $objDrawing->setName("chim_ung");
+        $objDrawing->setDescription("chim_ung");
+        $objDrawing->setPath('./image/chim_ung.jpg');
+        $objDrawing->setCoordinates('B8');
+        $objDrawing->setHeight(235);
+        $objDrawing->setWidth(435);
+        $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 
         $object_writer = PHPExcel_IOFactory::createWriter($objPHPExcel,'Excel2007');
-        header('Content-type: application/ms-excel');
-        header('Content-Disposition: attachment; filename="Xaytuong.xls"');
-        
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="xay.xlsx"');
+        header('Cache-Control: max-age=0');
         $object_writer->save('php://output');
         
     }
