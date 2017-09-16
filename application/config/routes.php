@@ -54,3 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['excel'] = 'export/index';
+$route['xaytuong'] = 'Home_Controller/XayTuong';
+$route['trat'] = 'Home_Controller/Trat';

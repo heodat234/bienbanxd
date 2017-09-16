@@ -65,8 +65,15 @@ class export extends CI_Controller {
         $objPHPExcel->setActiveSheetIndex(0);
 
         $congtrinh = $this->XayTuong_model->get_all();
-        $congviec = $this->XayTuong_model->congviec($congtrinh->id);
-        // var_dump($congviec);
+        $count = $this->XayTuong_model->Count_CongViec(1);
+        $thoigian = unserialize($congtrinh->thoigian);
+        $danhgia  = unserialize($congtrinh->danhgia);
+        // var_dump($congtrinh->vitri);
+        // if ($danhgia[5] == 1){
+        //     var_dump($danhgia[1]);
+        // }else{ echo "sadasda";}
+        
+
 
         $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1,3,$congtrinh->ten);
         $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(1,5,$congtrinh->diadiem);
@@ -85,9 +92,10 @@ class export extends CI_Controller {
         
 
         $row = 26;
-        foreach ($congviec as $viec) {
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3,$row,date("d/m/Y",strtotime($viec->thoigian)));
-            if ($viec->danhgia == 1) {
+        for ($i=1; $i < $count+1; $i++)
+         {
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(3,$row,$thoigian[$i]);
+            if ($danhgia[$i] == 1) {
                 $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(4,$row,'X');
             }else{
                 $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(5,$row,'X');
@@ -97,9 +105,9 @@ class export extends CI_Controller {
 
         //anh
         $objDrawing = new PHPExcel_Worksheet_Drawing();
-        $objDrawing->setName("chim_ung");
-        $objDrawing->setDescription("chim_ung");
-        $objDrawing->setPath('./image/chim_ung.jpg');
+        $objDrawing->setName($congtrinh->hinh_sodo);
+        $objDrawing->setDescription($congtrinh->hinh_sodo);
+        $objDrawing->setPath('./image/'.$congtrinh->hinh_sodo.'');
         $objDrawing->setCoordinates('B8');
         $objDrawing->setHeight(235);
         $objDrawing->setWidth(435);

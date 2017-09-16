@@ -15,10 +15,10 @@ class XayTuong_model extends CI_Model {
    return $row;
  }
 
- public function congviec($id_xaytuong)
+ public function congviec($id_bienban)
  {
-   $this->db->where('id_xaytuong',$id_xaytuong);
-   $query = $this->db->get('congviec_xaytuong');
+   $this->db->where('id_bienban',$id_bienban);
+   $query = $this->db->get('congviec');
    return $query->result();
  }
 
@@ -32,4 +32,11 @@ class XayTuong_model extends CI_Model {
    $this->db->insert("xaytuong",$xaytuong);
    return $this->db->insert_id();
  }
+ public function Count_CongViec($id_bienban)
+ {
+    $this->db->where('id_bienban',$id_bienban);
+    $query=$this->db->get("congviec");
+    return $query->num_rows();
+ }
+ 
 }
