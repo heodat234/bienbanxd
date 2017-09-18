@@ -21,7 +21,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- <script type="text/javascript" src="<?php echo base_url(); ?>js/submitAjax.js"></script> -->
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/bootstrap-datetimepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/bootstrap-datetimepicker.css">
-	<script src="<?php echo base_url(); ?>js/printThis.js"></script>
 
 </head>
 <body>
@@ -32,10 +31,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a href="" class="navbar-brand">Xây Dựng</a>
                     </div>
  
-                    <div class="navbar-collapse export" style="display: none;">
+                    <div class="navbar-collapse export"  style="display: none;">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="<?php echo base_url(); ?>excel">Excel</a></li>
-                            <li><a href="javascript:void (0)" id="btPrint" >In</a></li>
+                            <li><a href="<?php  ?>">In</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -63,13 +62,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</div>
 		  	</div>
 		  	<div class="col-md-1"></div>
-		  	<div class="col-md-8" id="print">
+		  	<div class="col-md-8" >
 		  		<div class="table-responsive">
 		  			<form enctype="multipart/form-data" method="post" id="new_form">
 				        <table class="table table-bordered" style="text-align: center;">
 							<tbody>
 								<tr>
-									<td colspan="7" style="background-color: #E6E6E6"><b>BIÊN BẢN KIỂM TRA CÔNG TÁC XÂY TƯỜNG</b></td>
+									<td colspan="7" style="background-color: #E6E6E6"><b>BIÊN BẢN KIỂM TRA CÔNG TÁC TRÁT TẦNG</b></td>
 								</tr>	
 								<tr>
 									<td colspan="4" style="text-align: left;">
@@ -195,7 +194,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>
 <script type="text/javascript">
 
-
 	    $(".form_datetime").datetimepicker({
 	    	todayBtn: "linked",
 	       language: "it",
@@ -229,11 +227,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     $(document).ready(function(){
-    	//gọi in
-    	 $('#btPrint').click(function () {
-                $("#print").printThis();
-            });
-
 
 	  $('#save').click(function() {
 	    var name = $("#name").val();

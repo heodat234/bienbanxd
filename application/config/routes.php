@@ -53,6 +53,6 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['excel'] = 'export/index';
+$route['excel'] = 'export/excelXayTuong';
 $route['xaytuong'] = 'Home_Controller/XayTuong';
 $route['trat'] = 'Home_Controller/Trat';

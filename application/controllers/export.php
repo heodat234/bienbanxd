@@ -87,7 +87,7 @@ class export extends CI_Controller {
         if ($congtrinh->Ketluan == 1) {
            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0,44,'X');
         }else{
-            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0,44,'X');
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow(0,45,'X');
         }
         
 
@@ -109,8 +109,8 @@ class export extends CI_Controller {
         $objDrawing->setDescription($congtrinh->hinh_sodo);
         $objDrawing->setPath('./image/'.$congtrinh->hinh_sodo.'');
         $objDrawing->setCoordinates('B8');
-        $objDrawing->setHeight(235);
-        $objDrawing->setWidth(435);
+        $objDrawing->setHeight(200);
+        $objDrawing->setWidth(380);
         $objDrawing->setWorksheet($objPHPExcel->getActiveSheet());
 
         $object_writer = PHPExcel_IOFactory::createWriter($objPHPExcel,'Excel2007');
